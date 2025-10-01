@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lesson 2</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>3. Views</h1>
+  <!-- Views -->
+  <div class="section">
+    <h3>Creating a View</h3>
+    <pre>CREATE VIEW employee_view AS
+SELECT name, salary FROM employees WHERE salary > 3000;</pre>
+
+    <h3>Altering / Dropping Views</h3>
+    <pre>ALTER VIEW employee_view AS
+SELECT name, salary, dept_id FROM employees;
+DROP VIEW employee_view;</pre>
+
+    <h3>Updatable Views</h3>
+    <pre>UPDATE employee_view SET salary = 6000 WHERE name = 'John';</pre>
+
+    <h3>WITH CHECK OPTION</h3>
+    <pre>CREATE VIEW high_salary AS
+SELECT * FROM employees WHERE salary > 5000
+WITH CHECK OPTION;</pre>
+
+    <h3>Benefits</h3>
+    <ul>
+      <li>Simplifies complex queries</li>
+      <li>Improves security by limiting access</li>
+      <li>Provides logical data independence</li>
+    </ul>
+  </div>
+</body>
+</html>
