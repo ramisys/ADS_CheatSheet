@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lesson 1</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>1. Joins and Subqueries</h1>
+
+  <!-- Joins and Subqueries -->
+  <div class="section">
+    <h2>Introduction to Joins</h2>
+    <p>JOINs combine rows from two or more tables based on related columns.</p>
+
+    <h3>INNER JOIN</h3>
+    <pre>SELECT employees.name, departments.dept_name
+FROM employees
+INNER JOIN departments ON employees.dept_id = departments.id;</pre>
+
+    <h3>LEFT JOIN</h3>
+    <pre>SELECT employees.name, departments.dept_name
+FROM employees
+LEFT JOIN departments ON employees.dept_id = departments.id;</pre>
+
+    <h3>RIGHT JOIN</h3>
+    <pre>SELECT employees.name, departments.dept_name
+FROM employees
+RIGHT JOIN departments ON employees.dept_id = departments.id;</pre>
+
+    <h3>CROSS JOIN</h3>
+    <pre>SELECT employees.name, departments.dept_name
+FROM employees
+CROSS JOIN departments;</pre>
+
+    <h3>SELF JOIN</h3>
+    <pre>SELECT A.name AS Employee, B.name AS Manager
+FROM employees A
+INNER JOIN employees B ON A.manager_id = B.id;</pre>
+
+    <h3>Subquery in WHERE Clause</h3>
+    <pre>SELECT name, salary
+FROM employees
+WHERE salary > (SELECT AVG(salary) FROM employees);</pre>
+
+    <h3>Subquery with ALL / ANY</h3>
+    <pre>-- ANY
+SELECT name FROM employees
+WHERE salary > ANY (SELECT salary FROM employees WHERE dept_id = 2);
+
+-- ALL
+SELECT name FROM employees
+WHERE salary > ALL (SELECT salary FROM employees WHERE dept_id = 2);</pre>
+
+    <h3>Correlated Subquery</h3>
+    <pre>SELECT name, salary
+FROM employees e
+WHERE salary > (SELECT AVG(salary) 
+                FROM employees 
+                WHERE dept_id = e.dept_id);</pre>
+
+    <h3>EXISTS / NOT EXISTS</h3>
+    <pre>-- EXISTS
+SELECT name FROM employees e
+WHERE EXISTS (SELECT 1 FROM departments d WHERE e.dept_id = d.id);
+
+-- NOT EXISTS
+SELECT name FROM employees e
+WHERE NOT EXISTS (SELECT 1 FROM departments d WHERE e.dept_id = d.id);</pre>
+
+    <h3>Subquery in SELECT Clause</h3>
+    <pre>SELECT name,
+       (SELECT dept_name FROM departments d WHERE d.id = e.dept_id) AS Department
+FROM employees e;</pre>
+
+    <h3>Subquery in FROM Clause</h3>
+    <pre>SELECT dept_id, AVG(salary) AS avg_salary
+FROM (SELECT * FROM employees WHERE salary > 3000) AS high_salary_emps
+GROUP BY dept_id;</pre>
+  </div>
+</body>
+</html>
