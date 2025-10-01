@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lesson 2</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Stored Procedures -->
+  <h1>4. Stored Procedures</h1>
+  <div class="section">
+    <h3>Creating Procedure</h3>
+    <pre>DELIMITER $$
+CREATE PROCEDURE showAllUsers()
+BEGIN
+  SELECT * FROM users;
+END$$
+DELIMITER ;</pre>
+
+    <h3>Dropping Procedure</h3>
+    <pre>DROP PROCEDURE IF EXISTS showAllUsers;</pre>
+
+    <h3>Parameters</h3>
+    <pre>-- IN
+CREATE PROCEDURE getUserById(IN userId INT)
+BEGIN
+  SELECT * FROM users WHERE id = userId;
+END;
+
+-- OUT
+CREATE PROCEDURE getUserName(IN userId INT, OUT userName VARCHAR(50))
+BEGIN
+  SELECT name INTO userName FROM users WHERE id = userId;
+END;</pre>
+
+    <h3>Validation</h3>
+    <pre>CREATE PROCEDURE checkAge(IN userAge INT)
+BEGIN
+  IF userAge < 18 THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Must be 18 or older';
+  END IF;
+END;</pre>
+
+    <h3>Variables</h3>
+    <pre>CREATE PROCEDURE countActiveUsers()
+BEGIN
+  DECLARE total INT DEFAULT 0;
+  SELECT COUNT(*) INTO total FROM users WHERE status = 'active';
+  SELECT total AS ActiveUsers;
+END;</pre>
+
+    <h3>Functions</h3>
+    <pre>CREATE FUNCTION getTotalUsers()
+RETURNS INT
+BEGIN
+  DECLARE total INT;
+  SELECT COUNT(*) INTO total FROM users;
+  RETURN total;
+END;</pre>
+  </div>
+
+</body>
+</html>
