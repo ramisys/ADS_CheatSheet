@@ -1,32 +1,41 @@
 body {
-	font-family: Arial, sans-serif;
-	line-height: 1.6;
-	margin: 20px;
-	background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+    background-color: #f7f7f7;
 }
 
 h1, h2, h3 {
-        color: #2c3e50;
+    color: #2c3e50;
 }
 
 code {
-	background-color: #ecf0f1;
-        padding: 2px 5px;
-        border-radius: 3px;
-        font-size: 0.95em;
+    background-color: #ecf0f1;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.95em;
 }
 
 pre {
-        background-color: #ecf0f1;
-        padding: 10px;
-        border-left: 4px solid #3498db;
-        overflow-x: auto;
+    background-color: #ecf0f1;
+    padding: 10px;
+    border-left: 4px solid #3498db;
+    overflow-x: auto;
 }
 
-section {
-        background-color: #ffffff;
-        padding: 15px;
-        margin-bottom: 20px;
-        border-radius: 5px;
-        box-shadow: 0 0 5px #ccc;
+a.lesson-box {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background-color: #ffffff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ccc;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+a.lesson-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px #aaa;
 }
